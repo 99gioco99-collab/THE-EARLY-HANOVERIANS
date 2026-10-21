@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Early Hanoverians (1714-1760)</title>
+  <style>
+    /* --- COLORI E STILI DI BASE --- */
+    :root {
+      --gold: #d4af37;
+      --gold-hover: #f3cf65;
+      --bg-dark: #0f141d;
+      --card-bg: #161e2e;
+      --card-border: #2a364f;
+      --text-light: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+      position: relative;
+    }
+
+    /* CONTENITORE PRINCIPALE A SCHERMO INTERO */
+    .container {
+      width: 98vw;
+      max-width: 1600px;
+      text-align: center;
+    }
+
+    /* BARRA ACCESSIBILITÀ IN ALTO */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .audio-guide-btn {
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .audio-guide-btn:hover {
+      background-color: var(--gold);
+      color: var(--bg-dark);
+    }
+
+    .accessibility-badges {
+      display: flex;
+      gap: 12px;
+    }
+
+    .acc-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .acc-badge span {
+      font-size: 1.2rem;
+    }
+
+    /* INTESTAZIONE E TITOLO SFUMATO D'ORO */
+    .header-section {
+      margin-bottom: 25px;
+    }
+
+    .main-title {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.3));
+    }
+
+    .date-badge {
+      display: inline-block;
+      background-color: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+
+    /* CARD SELEZIONE MODALITÀ */
+    .mode-selection {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .mode-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 18px;
+      padding: 40px 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      outline: none;
+    }
+
+    .mode-card:focus, .mode-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .mode-icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .mode-title {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .mode-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 25px;
+    }
+
+    .btn-select {
+      background-color: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-card:hover .btn-select, .mode-card:focus .btn-select {
+      background-color: var(--gold);
+      color: var(--bg-dark);
+    }
+
+    /* FOOTER TASTIERA */
+    .keyboard-note {
+      margin-top: 35px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 12px 24px;
+      border-radius: 10px;
+      display: inline-block;
+      border: 1px dashed var(--card-border);
+    }
+
+    .keyboard-note code {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--gold);
+    }
+
+    /* AREA SCHERMATE DIVERSE (SCHERMO INTERO) */
+    .view-screen {
+      display: none;
+      background-color: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: left;
+      margin-top: 10px;
+      min-height: 85vh;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .back-btn {
+      background-color: transparent;
+      border: 1px solid var(--text-muted);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .back-btn:hover, .back-btn:focus {
+      color: var(--text-light);
+      border-color: var(--text-light);
+    }
+
+    /* --- STILI CINEMATOGRAFICI LIVE PRESENTATION (A SCHERMO PIENO) --- */
+    .cinematic-stage {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .scene-panel {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* LAYOUT SCENA 1: CARTINA (3/4) + GEORGE I (1/4) */
+    .scene1-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 25px;
+      width: 100%;
+      align-items: center;
+    }
+
+    @media (max-width: 1000px) {
+      .scene1-grid { grid-template-columns: 1fr; }
+    }
+
+    .map-wrapper-large {
+      position: relative;
+      width: 100%;
+      height: 65vh;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    }
+
+    .fullscreen-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .map-connection-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .king-side-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 20, 29, 0.9);
+      border: 2px solid var(--card-border);
+      padding: 25px 15px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .portrait-img-large {
+      width: 100%;
+      max-width: 260px;
+      height: 320px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      margin-bottom: 15px;
+    }
+
+    .speech-bubble-side {
+      background: #f8fafc;
+      color: #0f141d;
+      padding: 15px;
+      border-radius: 16px;
+      font-weight: bold;
+      font-size: 1.05rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      border: 2px solid var(--gold);
+      position: relative;
+    }
+
+    .character-name-tag-large {
+      color: var(--gold);
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    /* SCENA 2: LA FOTO DELLA PORTA REALE */
+    .door-wrapper-large {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 62vh;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid var(--gold);
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(0,0,0,0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .door-wrapper-large:hover {
+      transform: scale(1.02);
+    }
+
+    .door-overlay-text {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 20, 29, 0.9);
+      border: 2px solid var(--gold);
+      padding: 10px 25px;
+      border-radius: 30px;
+      color: var(--gold);
+      font-size: 1.2rem;
+      font-weight: bold;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* SCENA 3: CABINET STANZA GIGANTE */
+    .cabinet-room-bg {
+      width: 100%;
+      text-align: center;
+    }
+
+    .room-heading-large {
+      color: var(--gold);
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .political-arena-large {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 50px;
+      width: 100%;
+    }
+
+    .politician-card-large {
+      background: rgba(22, 30, 46, 0.95);
+      border: 3px solid var(--card-border);
+      border-radius: 16px;
+      padding: 25px;
+      width: 420px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .politician-card-large:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+    }
+
+    .politician-img-large {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid var(--card-border);
+      margin-bottom: 15px;
+    }
+
+    .party-tag-large {
+      font-size: 0.95rem;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .whig-tag { background: #38bdf8; color: #0f141d; }
+    .tory-tag { background: #f87171; color: #0f141d; }
+
+    .politician-card-large h4 { color: var(--text-light); font-size: 1.5rem; margin-bottom: 6px; }
+    .role-subtitle-large { font-size: 1.1rem; color: var(--gold); display: block; margin-bottom: 15px; }
+
+    .hover-info-box-large {
+      background: rgba(15, 20, 29, 0.95);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 1.05rem;
+      color: var(--text-light);
+      text-align: left;
+      line-height: 1.5;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .politician-card-large:hover .hover-info-box-large {
+      display: block;
+    }
+
+    .vs-badge-large {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      align-self: center;
+    }
+
+    .next-action-btn-large {
+      background-color: var(--gold);
+      color: var(--bg-dark);
+      border: none;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: block;
+      margin: 25px auto 0 auto;
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .next-action-btn-large:hover {
+      background-color: var(--gold-hover);
+      transform: scale(1.04);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- SCHERMATA INIZIALE -->
+    <div id="home-screen">
+      
+      <div class="top-bar">
+        <button class="audio-guide-btn" onclick="speakWelcome()">
+          🔊 Replay Audio Instructions
+        </button>
+        <div class="accessibility-badges">
+          <div class="acc-badge" title="Accessible for Deaf and Hard of Hearing students">
+            <span>🧏</span> Deaf Accessible
+          </div>
+          <div class="acc-badge" title="Accessible for Blind and Visually Impaired students">
+            <span>👨‍🦯</span> Blind Accessible
+          </div>
+        </div>
+      </div>
+
+      <div class="header-section">
+        <h1 class="main-title">THE EARLY HANOVERIANS</h1>
+        <div class="date-badge">1714 – 1760</div>
+      </div>
+
+      <div class="mode-selection">
+        <!-- MODALITÀ A -->
+        <div class="mode-card" tabindex="0" onclick="selectMode('presentation')" onkeypress="handleKey(event, 'presentation')">
+          <div>
+            <div class="mode-icon">🎬</div>
+            <h2 class="mode-title">Live Presentation</h2>
+            <p class="mode-desc">For classroom presentation with interactive whiteboard</p>
+          </div>
+          <button class="btn-select" tabindex="-1">Launch [ A ]</button>
+        </div>
+
+        <!-- MODALITÀ B -->
+        <div class="mode-card" tabindex="0" onclick="selectMode('study')" onkeypress="handleKey(event, 'study')">
+          <div>
+            <div class="mode-icon">📚</div>
+            <h2 class="mode-title">Interactive Study & Revision</h2>
+            <p class="mode-desc">Home study mode with primary sources and text-to-speech</p>
+          </div>
+          <button class="btn-select" tabindex="-1">Launch [ B ]</button>
+        </div>
+      </div>
+
+      <div class="keyboard-note">
+        ⌨️ Accessible via Keyboard: Press <code>[A]</code> or <code>[B]</code> directly, <code>[TAB]</code> to navigate, <code>[ESC]</code> to go back
+      </div>
+
+    </div>
+
+    <!-- SCHERMATA PRESENTAZIONE (LIVE PRESENTATION - FULL SCREEN) -->
+    <div id="presentation-screen" class="view-screen">
+      <button class="back-btn" onclick="goHome()">← Back to Mode Selection (ESC)</button>
+      
+      <div style="margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 10px;">
+        <h2 style="font-size: 2.2rem; color: var(--gold);">🎬 PART 1: George I & The Cabinet (1714–1727)</h2>
+      </div>
+
+      <!-- CONTENITORE CINEMATOGRAFICO A SCHERMATA PIENA -->
+      <div class="cinematic-stage">
+        
+        <!-- SCENA 1: CARTINA (3/4) + GEORGE I (1/4) -->
+        <div class="scene-panel" id="scene-map">
+          <div class="scene1-grid">
+            
+            <!-- CARTINA A SINISTRA (3/4) -->
+            <div class="map-wrapper-large">
+              <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
+              <svg class="map-connection-overlay" viewBox="0 0 1000 600">
+                <line x1="280" y1="205" x2="480" y2="245" stroke="#d4af37" stroke-width="6" stroke-dasharray="8" />
+                <circle cx="280" cy="205" r="10" fill="#38bdf8" />
+                <text x="230" y="185" fill="#38bdf8" font-size="20" font-weight="bold">London</text>
+                <circle cx="480" cy="245" r="10" fill="#f87171" />
+                <text x="495" y="245" fill="#f87171" font-size="20" font-weight="bold">Hanover</text>
+              </svg>
+            </div>
+
+            <!-- GEORGE I A DESTRA (1/4) -->
+            <div class="king-side-panel">
+              <div class="speech-bubble-side">
+                "I speak little English and spend most of my reign in Hanover!" 🇬🇧❌
+              </div>
+              <img src="image_71affe.jpg" alt="George I" class="portrait-img-large">
+              <h3 class="character-name-tag-large">George I (1714–1727)</h3>
+              <button class="next-action-btn-large" onclick="goToScene(2)">Delegate Power ➔</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SCENA 2: LA FOTO DELLA PORTA REALE CON TASTO "OPEN THE DOOR" -->
+        <div class="scene-panel" id="scene-door" style="display: none;">
+          <div class="door-wrapper-large" onclick="goToScene(3)">
+            <img src="image_7205f8.png" alt="10 Downing Street Door" class="fullscreen-bg-img">
+            <div class="door-overlay-text">🚪 10 Downing Street</div>
+          </div>
+          <button class="next-action-btn-large" onclick="goToScene(3)">Open the Door ➔</button>
+        </div>
+
+        <!-- SCENA 3: STANZA CABINET WALPOLE VS HENRY SAINT JOHN -->
+        <div class="scene-panel" id="scene-cabinet" style="display: none;">
+          <div class="cabinet-room-bg">
+            <h3 class="room-heading-large">🏛️ The Cabinet: Whigs vs Tories Political Scene</h3>
+            
+            <div class="political-arena-large">
+              
+              <!-- ROBERT WALPOLE (SINISTRA) -->
+              <div class="politician-card-large" id="card-walpole">
+                <div class="party-tag-large whig-tag">WHIGS LEADER</div>
+                <br>
+                <img src="image_7209de.jpg" alt="Sir Robert Walpole" class="politician-img-large">
+                <h4>Sir Robert Walpole</h4>
+                <span class="role-subtitle-large">The First Prime Minister (1721–42)</span>
+                
+                <div class="hover-info-box-large">
+                  <p><strong>Sir Robert Walpole:</strong> Ambitious Whig leader, regarded as the first Prime Minister. His anti-war government was the longest in British history. Promoted trade, reduced land taxes, and received Downing Street!</p>
+                </div>
+              </div>
+
+              <!-- GRANDE VS AL CENTRO -->
+              <div class="vs-badge-large">VS</div>
+
+              <!-- HENRY ST JOHN / BOLINGBROKE (DESTRA) -->
+              <div class="politician-card-large" id="card-bolingbroke">
+                <div class="party-tag-large tory-tag">TORIES OPPOSITION</div>
+                <br>
+                <img src="image_7209fb.jpg" alt="Henry St John" class="politician-img-large">
+                <h4>Henry St John (Lord Bolingbroke)</h4>
+                <span class="role-subtitle-large">Tory Leader</span>
+                
+                <div class="hover-info-box-large">
+                  <p><strong>Henry St John:</strong> Leader of the opposition. Implicated in the 1715 Jacobite rebellion, leading to long-term political exile and Whig supremacy.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <button class="next-action-btn-large" onclick="resetPart1()">🔄 Restart Part 1</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCHERMATA STUDIO (In costruzione) -->
+    <div id="study-screen" class="view-screen">
+      <button class="back-btn" onclick="goHome()">← Back to Mode Selection (ESC)</button>
+      <h2>📚 Interactive Study & Revision</h2>
+      <p style="margin-top: 15px; color: var(--text-muted);">Sources, text-to-speech engine and study tools under construction...</p>
+    </div>
+
+  </div>
+
+  <script>
+    let hasSpoken = false;
+
+    function speakWelcome() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const text = "Welcome to The Early Hanoverians, 1714 to 1760. Press A for Live Presentation. Press B for Interactive Study and Revision. You can also use TAB to navigate, ENTER to select, and ESCAPE to go back.";
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.95;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en'));
+        if (englishVoice) utterance.voice = englishVoice;
+
+        window.speechSynthesis.speak(utterance);
+        hasSpoken = true;
+      }
+    }
+
+    function selectMode(mode) {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      document.getElementById('home-screen').style.display = 'none';
+      if (mode === 'presentation') {
+        document.getElementById('presentation-screen').classList.add('active');
+        goToScene(1);
+      } else if (mode === 'study') {
+        document.getElementById('study-screen').classList.add('active');
+      }
+    }
+
+    function goHome() {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      document.getElementById('presentation-screen').classList.remove('active');
+      document.getElementById('study-screen').classList.remove('active');
+      document.getElementById('home-screen').style.display = 'block';
+    }
+
+    function handleKey(event, mode) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectMode(mode);
+      }
+    }
+
+    // Navigazione scene cinematografiche
+    function goToScene(sceneNumber) {
+      document.getElementById('scene-map').style.display = 'none';
+      document.getElementById('scene-door').style.display = 'none';
+      document.getElementById('scene-cabinet').style.display = 'none';
+
+      if (sceneNumber === 1) document.getElementById('scene-map').style.display = 'flex';
+      if (sceneNumber === 2) document.getElementById('scene-door').style.display = 'flex';
+      if (sceneNumber === 3) document.getElementById('scene-cabinet').style.display = 'flex';
+    }
+
+    function resetPart1() {
+      goToScene(1);
+    }
+
+    // Tasti diretti (A, B, ESC)
+    document.addEventListener('keydown', function(event) {
+      const homeScreen = document.getElementById('home-screen');
+      if (homeScreen && homeScreen.style.display !== 'none') {
+        if (event.key === 'a' || event.key === 'A') {
+          selectMode('presentation');
+        } else if (event.key === 'b' || event.key === 'B') {
+          selectMode('study');
+        }
+      } else if (event.key === 'Escape') {
+        goHome();
+      }
+    });
+  </script>
+
+</body>
+</html>
