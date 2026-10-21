@@ -232,7 +232,7 @@
       border-color: var(--text-light);
     }
 
-    /* NAVIGAZIONE SEZIONI */
+    /* NAVIGAZIONE SEZIONI (TENDINA) */
     .part-nav-bar {
       display: flex;
       justify-content: center;
@@ -240,6 +240,7 @@
       margin-bottom: 20px;
       border-bottom: 2px solid var(--card-border);
       padding-bottom: 15px;
+      flex-wrap: wrap;
     }
 
     .part-nav-btn {
@@ -284,13 +285,12 @@
       justify-content: center;
     }
 
-    /* LAYOUT SCENA 1 PARTE 1 */
-    .scene1-grid {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 25px;
+    /* IMMAGINI E MAPPE GENERALI */
+    .fullscreen-bg-img {
       width: 100%;
-      align-items: center;
+      height: 100%;
+      object-fit: contain;
+      background-color: #0b0f17;
     }
 
     .map-wrapper-large {
@@ -304,13 +304,6 @@
       background-color: #000;
     }
 
-    .fullscreen-bg-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Assicura che l'intera immagine sia visibile senza tagli */
-      background-color: #0b0f17;
-    }
-
     .map-connection-overlay {
       position: absolute;
       top: 0;
@@ -318,6 +311,15 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+    }
+
+    /* PARTE 1 STILI */
+    .scene1-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 25px;
+      width: 100%;
+      align-items: center;
     }
 
     .king-side-panel {
@@ -361,7 +363,6 @@
       margin-bottom: 15px;
     }
 
-    /* SCENA PORTA REALE */
     .door-wrapper-large {
       position: relative;
       width: 100%;
@@ -390,7 +391,6 @@
       pointer-events: none;
     }
 
-    /* CABINET & POLITICIANS */
     .cabinet-room-bg {
       width: 100%;
       text-align: center;
@@ -475,7 +475,7 @@
       align-self: center;
     }
 
-    /* STILI PARTE 2 */
+    /* PARTE 2 STILI */
     .coffee-display-box {
       position: relative;
       width: 100%;
@@ -514,7 +514,6 @@
       font-weight: 600;
     }
 
-    /* WESLEY BROTHERS */
     .wesley-container {
       display: flex;
       flex-direction: column;
@@ -562,6 +561,99 @@
       font-size: 1.15rem;
       line-height: 1.8;
       color: var(--text-light);
+    }
+
+    /* --- PARTE 3 STILI SPECIFICI --- */
+    .atlantis-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 20px;
+      align-items: center;
+      width: 100%;
+      max-width: 1300px;
+    }
+
+    .ship-card {
+      background: rgba(22, 30, 46, 0.9);
+      border: 2px solid var(--card-border);
+      border-radius: 14px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .ship-card:hover {
+      border-color: var(--gold);
+      transform: scale(1.03);
+    }
+
+    .ship-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 2px solid var(--card-border);
+    }
+
+    .war-battle-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .crown-vs-card {
+      background: rgba(22, 30, 46, 0.9);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      width: 280px;
+    }
+
+    .crown-vs-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    /* CULLODEN BATTLE STYLES */
+    .culloden-arena {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .flag-card {
+      background: rgba(22, 30, 46, 0.95);
+      border: 3px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      width: 320px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .flag-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #000;
+    }
+
+    .flag-card.defeated {
+      filter: blur(5px) grayscale(80%);
+      opacity: 0.4;
+      pointer-events: none;
     }
 
     .next-action-btn-large {
@@ -643,10 +735,11 @@
     <div id="presentation-screen" class="view-screen">
       <button class="back-btn" onclick="goHome()">← Back to Mode Selection (ESC)</button>
 
-      <!-- BARRA SEZIONI PRINCIPALI -->
+      <!-- BARRA SEZIONI PRINCIPALI (TENDINA) -->
       <div class="part-nav-bar">
         <button class="part-nav-btn active-part" id="nav-p1" onclick="switchMainPart(1)">PART 1: George I & Cabinet</button>
-        <button class="part-nav-btn" id="nav-p2" onclick="switchMainPart(2)">PART 2: Coffee Houses, Culture & Methodism</button>
+        <button class="part-nav-btn" id="nav-p2" onclick="switchMainPart(2)">PART 2: Coffee & Methodism</button>
+        <button class="part-nav-btn" id="nav-p3" onclick="switchMainPart(3)">PART 3: George II & Jacobites</button>
       </div>
 
       <!-- CONTENITORE PARTE 1 -->
@@ -697,7 +790,7 @@
                   <h4>Sir Robert Walpole</h4>
                   <span class="role-subtitle-large">The First Prime Minister (1721–42)</span>
                   <div class="hover-info-box-large">
-                    <p><strong>Sir Robert Walpole:</strong> Ambitious Whig leader, regarded as the first Prime Minister. His anti-war government was the longest in British history. Promoted trade, reduced land taxes, and received Downing Street!</p>
+                    <p><strong>Sir Robert Walpole:</strong> Ambitious Whig leader, regarded as the first Prime Minister. His anti-war government was the longest in British history. Promoted trade, reduced land taxes, and received Downing Street</p>
                   </div>
                 </div>
 
@@ -726,7 +819,6 @@
       <div id="main-part-2-container" style="display: none;">
         <div class="cinematic-stage">
           
-          <!-- PARTE 2 - STEP 1: COFFEE HOUSE & NEWSPAPERS -->
           <div class="scene-panel" id="p2-step-coffee">
             <div class="coffee-display-box">
               <img id="coffee-img-element" src="WhatsApp Image 2026-10-21 at 16.10.07.jpeg" alt="Coffee House" class="fullscreen-bg-img">
@@ -738,7 +830,6 @@
             <button class="next-action-btn-large" id="btn-coffee-step" onclick="advanceCoffeeStep()">Read the Newspaper ➔</button>
           </div>
 
-          <!-- PARTE 2 - STEP 2: GRAND TOUR & ARCHITECTURE -->
           <div class="scene-panel" id="p2-step-grandtour" style="display: none;">
             <div class="map-wrapper-large" style="width: 100%; max-width: 1000px;">
               <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
@@ -757,7 +848,6 @@
             <button class="next-action-btn-large" onclick="goToP2Step(3)">Next: Methodism Movement ➔</button>
           </div>
 
-          <!-- PARTE 2 - STEP 3: METHODISM -->
           <div class="scene-panel" id="p2-step-methodism" style="display: none;">
             <div class="wesley-container">
               <img src="georgeandcharlses.jpg" alt="John and Charles Wesley" class="wesley-img-large">
@@ -770,7 +860,139 @@
                 </ul>
               </div>
             </div>
-            <button class="next-action-btn-large" onclick="switchMainPart(1)">🔄 Restart from Part 1</button>
+            <button class="next-action-btn-large" onclick="switchMainPart(3)">Go to Part 3: George II & Jacobites ➔</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTENITORE PARTE 3 -->
+      <div id="main-part-3-container" style="display: none;">
+        <div class="cinematic-stage">
+          
+          <!-- STEP 1: MORTE DI GEORGE I E SUCESSIONE DI GEORGE II -->
+          <div class="scene-panel" id="p3-step-george2">
+            <div class="king-side-panel" style="width: 100%; max-width: 600px; padding: 30px;" onclick="advanceGeorgeTransition()" id="george-click-box" style="cursor: pointer;">
+              <div id="george-content-area">
+                <img src="image_71affe.jpg" alt="George I" class="portrait-img-large" id="george-portrait-img">
+                <h3 class="character-name-tag-large" id="george-title-text">George I (1714–1727)</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Click portrait to view succession</p>
+              </div>
+            </div>
+            <button class="next-action-btn-large" id="btn-p3-next" onclick="goToP3Step(2)">Next: Atlantic War & Walpole's Resignation ➔</button>
+          </div>
+
+          <!-- STEP 2: OCEANO ATLANTICO E CADUTA DI WALPOLE -->
+          <div class="scene-panel" id="p3-step-atlantis" style="display: none;">
+            <div style="width: 100%; max-width: 1200px; text-align: center;">
+              <div class="overlay-text-banner" style="position: relative; margin-bottom: 20px;">
+                <h3>1739: Spanish Pirates & Colonial War</h3>
+                <p>Spanish pirates damaged London's ocean trade, forcing Walpole into war.</p>
+              </div>
+
+              <div class="atlantis-grid">
+                <!-- NAVE INGLESE -->
+                <div class="ship-card" onclick="revealWalpoleResign()">
+                  <img src="naveinglese.jpg" alt="British Ship" class="ship-img">
+                  <h4 style="color: var(--accent-blue);">British Navy</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">Click to inspect Walpole</p>
+                </div>
+
+                <!-- MAPPA OCEANO -->
+                <div class="map-wrapper-large" style="height: 45vh;">
+                  <img src="oceano.jpg" alt="Atlantic Ocean Map" class="fullscreen-bg-img">
+                </div>
+
+                <!-- NAVE SPAGNOLA -->
+                <div class="ship-card">
+                  <img src="navespagnola.jpg" alt="Spanish Ship" class="ship-img">
+                  <h4 style="color: #f87171;">Spanish Fleet</h4>
+                </div>
+              </div>
+
+              <!-- BOX WALPOLE RESIGN (Appare cliccando la nave inglese) -->
+              <div id="walpole-resign-box" style="display: none; margin-top: 15px; background: rgba(15,20,29,0.95); border: 2px solid var(--gold); padding: 15px; border-radius: 10px;">
+                <img src="image_7209de.jpg" alt="Walpole" style="width: 80px; height: 100px; object-fit: cover; border-radius: 6px; float: left; margin-right: 15px; border: 2px solid var(--gold);">
+                <h4 style="color: var(--gold);">1742: Walpole was forced to resign</h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; text-align: left;">After political pressure from the war failures, Sir Robert Walpole was forced to resign in 1742, though the Whigs stayed in power.</p>
+                <div style="clear: both;"></div>
+              </div>
+
+            </div>
+            <button class="next-action-btn-large" onclick="goToP3Step(3)">Next: Austrian Succession War ➔</button>
+          </div>
+
+          <!-- STEP 3: GUERRA DI SUCCESSIONE AUSTRIACA -->
+          <div class="scene-panel" id="p3-step-austrian" style="display: none;">
+            <div class="map-wrapper-large" style="width: 100%; max-width: 1000px; height: 50vh;">
+              <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
+            </div>
+            
+            <div class="war-battle-box">
+              <div class="crown-vs-card">
+                <img src="corona.png" alt="Crown">
+                <h4 style="color: #38bdf8;">Austria + Britain</h4>
+              </div>
+              <h2 style="color: var(--gold); font-size: 3rem;">VS</h2>
+              <div class="crown-vs-card">
+                <img src="corona.png" alt="Crown">
+                <h4 style="color: #f87171;">France + Prussia</h4>
+              </div>
+            </div>
+
+            <div class="overlay-text-banner" style="position: relative; margin-top: 15px; max-width: 1000px;">
+              <p>This conflict drew Britain into a general European war: the War of the Austrian Succession (1740-48), a conflict over territory between Austria and Prussia.</p>
+            </div>
+            <button class="next-action-btn-large" onclick="goToP3Step(4)">Next: The Jacobite Rebellion (1745) ➔</button>
+          </div>
+
+          <!-- STEP 4: LA RIBELLIONE GIACOBITA E BATTAGLIA DI CULLODEN -->
+          <div class="scene-panel" id="p3-step-jacobite" style="display: none;">
+            <div class="scene1-grid" style="align-items: center; width: 100%;">
+              
+              <!-- MAPPA CON LINEA FRANCIA -> SCOZIA -->
+              <div class="map-wrapper-large" style="height: 55vh;">
+                <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
+                <svg class="map-connection-overlay" viewBox="0 0 1000 600">
+                  <line x1="380" y1="310" x2="260" y2="150" stroke="#f87171" stroke-width="6" stroke-dasharray="8" />
+                </svg>
+                <div class="overlay-text-banner" style="bottom: 10px; padding: 10px;">
+                  <p style="font-size: 0.95rem;">1745: Charles Edward Stuart landed in Scotland to reclaim the throne.</p>
+                </div>
+              </div>
+
+              <!-- RITRATTO DI CHARLES EDWARD STUART -->
+              <div class="king-side-panel">
+                <img src="chrlesedwardstuart.jpg" alt="Charles Edward Stuart" class="portrait-img-large" style="cursor: pointer;" onclick="revealCullodenBattle()" title="Click to reveal Culloden Battle!">
+                <h3 class="character-name-tag-large">Bonnie Prince Charlie</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Click portrait for Culloden Battle</p>
+              </div>
+
+            </div>
+
+            <!-- SCONTRO DI STENDARDI CULLODEN (Appare cliccando il ritratto) -->
+            <div id="culloden-battle-box" style="display: none; margin-top: 15px; width: 100%;">
+              <h3 style="color: var(--gold); margin-bottom: 10px;">Battle of Culloden (Inverness, 1746)</h3>
+              <div class="culloden-arena">
+                
+                <!-- STENDARDO GIACOBITA (CLICCABILE PER SCONFIGGERLO) -->
+                <div class="flag-card" id="jacobite-flag-card" onclick="defeatJacobites()">
+                  <img src="stemmascozia.jpeg" alt="Jacobite Flag">
+                  <h4 style="color: #f87171;">Jacobite Army</h4>
+                  <p id="jacobite-status-text" style="font-size: 0.85rem; color: var(--text-muted);">Click to defeat</p>
+                </div>
+
+                <!-- STENDARDO CORONA BRITANNICA -->
+                <div class="flag-card">
+                  <img src="stemmahannover.jpeg" alt="British Crown Flag">
+                  <h4 style="color: #38bdf8;">British Crown</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">Victorious at Culloden</p>
+                </div>
+
+              </div>
+            </div>
+
+            <button class="next-action-btn-large" onclick="switchMainPart(1)" style="margin-top: 10px;">🔄 Restart from Part 1</button>
           </div>
 
         </div>
@@ -836,8 +1058,10 @@
     function switchMainPart(partNumber) {
       document.getElementById('main-part-1-container').style.display = 'none';
       document.getElementById('main-part-2-container').style.display = 'none';
+      document.getElementById('main-part-3-container').style.display = 'none';
       document.getElementById('nav-p1').classList.remove('active-part');
       document.getElementById('nav-p2').classList.remove('active-part');
+      document.getElementById('nav-p3').classList.remove('active-part');
 
       if (partNumber === 1) {
         document.getElementById('main-part-1-container').style.display = 'block';
@@ -847,6 +1071,10 @@
         document.getElementById('main-part-2-container').style.display = 'block';
         document.getElementById('nav-p2').classList.add('active-part');
         goToP2Step(1);
+      } else if (partNumber === 3) {
+        document.getElementById('main-part-3-container').style.display = 'block';
+        document.getElementById('nav-p3').classList.add('active-part');
+        goToP3Step(1);
       }
     }
 
@@ -861,7 +1089,7 @@
       if (sceneNumber === 3) document.getElementById('scene-cabinet').style.display = 'flex';
     }
 
-    /* SCENE PARTE 2 CON RESET CORRETTO */
+    /* SCENE PARTE 2 */
     let currentCoffeeStep = 1;
 
     function goToP2Step(stepNumber) {
@@ -871,13 +1099,10 @@
 
       if (stepNumber === 1) {
         document.getElementById('p2-step-coffee').style.display = 'flex';
-        // Reset completo dello stato del giornale
         currentCoffeeStep = 1;
         document.getElementById('coffee-img-element').src = 'WhatsApp Image 2026-10-21 at 16.10.07.jpeg';
         document.getElementById('coffee-banner').style.display = 'none';
-        
-        const btn = document.getElementById('btn-coffee-step');
-        btn.innerText = 'Read the Newspaper ➔';
+        document.getElementById('btn-coffee-step').innerText = 'Read the Newspaper ➔';
       } else if (stepNumber === 2) {
         document.getElementById('p2-step-grandtour').style.display = 'flex';
       } else if (stepNumber === 3) {
@@ -904,6 +1129,68 @@
       } else if (currentCoffeeStep === 4) {
         goToP2Step(2);
       }
+    }
+
+    /* SCENE PARTE 3 */
+    let georgeStage = 1;
+
+    function goToP3Step(stepNumber) {
+      document.getElementById('p3-step-george2').style.display = 'none';
+      document.getElementById('p3-step-atlantis').style.display = 'none';
+      document.getElementById('p3-step-austrian').style.display = 'none';
+      document.getElementById('p3-step-jacobite').style.display = 'none';
+
+      if (stepNumber === 1) {
+        document.getElementById('p3-step-george2').style.display = 'flex';
+        georgeStage = 1;
+        document.getElementById('george-portrait-img').src = 'image_71affe.jpg';
+        document.getElementById('george-portrait-img').style.filter = 'none';
+        document.getElementById('george-title-text').innerText = 'George I (1714–1727)';
+      } else if (stepNumber === 2) {
+        document.getElementById('p3-step-atlantis').style.display = 'flex';
+      } else if (stepNumber === 3) {
+        document.getElementById('p3-step-austrian').style.display = 'flex';
+      } else if (stepNumber === 4) {
+        document.getElementById('p3-step-jacobite').style.display = 'flex';
+      }
+    }
+
+    // Interazione transizione George I -> Tomba -> George II
+    function advanceGeorgeTransition() {
+      const portrait = document.getElementById('george-portrait-img');
+      const titleText = document.getElementById('george-title-text');
+
+      if (georgeStage === 1) {
+        // Clic 1: Sfuma e mostra la tomba con 1727
+        portrait.src = 'tomba.jpeg';
+        portrait.style.filter = 'sepia(30%) contrast(120%)';
+        titleText.innerText = '1727: George I died';
+        georgeStage = 2;
+      } else if (georgeStage === 2) {
+        // Clic 2: Passa a George II con scritta in inglese sulla successione
+        portrait.src = 'GeorgeII.jpg';
+        portrait.style.filter = 'none';
+        titleText.innerHTML = 'George II (1727–1760)<br><small style="color:var(--gold);">George I died and was succeeded by his son, George II.</small>';
+        georgeStage = 3;
+      } else {
+        goToP3Step(2);
+      }
+    }
+
+    function revealWalpoleResign() {
+      document.getElementById('walpole-resign-box').style.display = 'block';
+    }
+
+    function revealCullodenBattle() {
+      document.getElementById('culloden-battle-box').style.display = 'block';
+    }
+
+    function defeatJacobites() {
+      const flagCard = document.getElementById('jacobite-flag-card');
+      const statusText = document.getElementById('jacobite-status-text');
+      flagCard.classList.add('defeated');
+      statusText.innerHTML = '<strong>The Jacobites were defeated</strong>';
+      statusText.style.color = '#f87171';
     }
 
     // Tasti diretti (A, B, ESC)
