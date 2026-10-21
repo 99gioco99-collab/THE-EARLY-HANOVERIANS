@@ -35,7 +35,6 @@
       position: relative;
     }
 
-    /* CONTENITORE PRINCIPALE A SCHERMO INTERO */
     .container {
       width: 98vw;
       max-width: 1600px;
@@ -201,7 +200,7 @@
       color: var(--gold);
     }
 
-    /* AREA SCHERMATE DIVERSE (SCHERMO INTERO) */
+    /* AREA SCHERMATE DIVERSE */
     .view-screen {
       display: none;
       background-color: var(--card-bg);
@@ -233,14 +232,42 @@
       border-color: var(--text-light);
     }
 
-    /* --- STILI CINEMATOGRAFICI LIVE PRESENTATION (A SCHERMO PIENO) --- */
+    /* NAVIGAZIONE SEZIONI */
+    .part-nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 15px;
+    }
+
+    .part-nav-btn {
+      background: rgba(15, 20, 29, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .part-nav-btn.active-part {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.15);
+    }
+
+    /* STILI CINEMATOGRAFICI LIVE PRESENTATION */
     .cinematic-stage {
       background-color: rgba(0, 0, 0, 0.5);
       border: 2px solid var(--gold);
       border-radius: 16px;
       overflow: hidden;
       position: relative;
-      min-height: 75vh;
+      min-height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -257,7 +284,7 @@
       justify-content: center;
     }
 
-    /* LAYOUT SCENA 1: CARTINA (3/4) + GEORGE I (1/4) */
+    /* LAYOUT SCENA 1 PARTE 1 */
     .scene1-grid {
       display: grid;
       grid-template-columns: 3fr 1fr;
@@ -266,24 +293,22 @@
       align-items: center;
     }
 
-    @media (max-width: 1000px) {
-      .scene1-grid { grid-template-columns: 1fr; }
-    }
-
     .map-wrapper-large {
       position: relative;
       width: 100%;
-      height: 65vh;
+      height: 62vh;
       border-radius: 12px;
       overflow: hidden;
       border: 2px solid var(--gold);
       box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      background-color: #000;
     }
 
     .fullscreen-bg-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Assicura che l'intera immagine sia visibile senza tagli */
+      background-color: #0b0f17;
     }
 
     .map-connection-overlay {
@@ -328,7 +353,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.4);
       margin-bottom: 20px;
       border: 2px solid var(--gold);
-      position: relative;
     }
 
     .character-name-tag-large {
@@ -337,22 +361,18 @@
       margin-bottom: 15px;
     }
 
-    /* SCENA 2: LA FOTO DELLA PORTA REALE */
+    /* SCENA PORTA REALE */
     .door-wrapper-large {
       position: relative;
       width: 100%;
       max-width: 600px;
-      height: 62vh;
+      height: 60vh;
       border-radius: 16px;
       overflow: hidden;
       border: 3px solid var(--gold);
       cursor: pointer;
       box-shadow: 0 0 30px rgba(0,0,0,0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .door-wrapper-large:hover {
-      transform: scale(1.02);
+      background-color: #000;
     }
 
     .door-overlay-text {
@@ -368,10 +388,9 @@
       font-size: 1.2rem;
       font-weight: bold;
       pointer-events: none;
-      white-space: nowrap;
     }
 
-    /* SCENA 3: CABINET STANZA GIGANTE */
+    /* CABINET & POLITICIANS */
     .cabinet-room-bg {
       width: 100%;
       text-align: center;
@@ -398,7 +417,6 @@
       padding: 25px;
       width: 420px;
       text-align: center;
-      position: relative;
       transition: all 0.3s ease;
     }
 
@@ -457,6 +475,95 @@
       align-self: center;
     }
 
+    /* STILI PARTE 2 */
+    .coffee-display-box {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: 62vh;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 35px rgba(0,0,0,0.8);
+      margin: 0 auto;
+      background-color: #0b0f17;
+    }
+
+    .overlay-text-banner {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(15, 20, 29, 0.92);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .overlay-text-banner h3 {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .overlay-text-banner p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* WESLEY BROTHERS */
+    .wesley-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .wesley-img-large {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      object-fit: contain;
+      border: 3px solid var(--gold);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      background-color: #0b0f17;
+    }
+
+    .methodism-card {
+      background: rgba(22, 30, 46, 0.95);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 850px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .methodism-card h3 {
+      color: var(--gold);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .methodism-card h4 {
+      color: var(--accent-blue);
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+    }
+
+    .methodism-card ul {
+      list-style: none;
+      text-align: left;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
     .next-action-btn-large {
       background-color: var(--gold);
       color: var(--bg-dark);
@@ -468,7 +575,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
       display: block;
-      margin: 25px auto 0 auto;
+      margin: 20px auto 0 auto;
       box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
     }
 
@@ -527,106 +634,151 @@
       </div>
 
       <div class="keyboard-note">
-        ⌨️ Accessible via Keyboard: Press <code>[A]</code> or <code>[B]</code> directly, <code>[TAB]</code> to navigate, <code>[ESC]</code> to go back
+        ⌨️ Accessible with Keyboard: Press <code>[A]</code> or <code>[B]</code> directly, <code>[TAB]</code> to navigate, <code>[ESC]</code> to go back
       </div>
 
     </div>
 
-    <!-- SCHERMATA PRESENTAZIONE (LIVE PRESENTATION - FULL SCREEN) -->
+    <!-- SCHERMATA PRESENTAZIONE -->
     <div id="presentation-screen" class="view-screen">
       <button class="back-btn" onclick="goHome()">← Back to Mode Selection (ESC)</button>
-      
-      <div style="margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 10px;">
-        <h2 style="font-size: 2.2rem; color: var(--gold);">🎬 PART 1: George I & The Cabinet (1714–1727)</h2>
+
+      <!-- BARRA SEZIONI PRINCIPALI -->
+      <div class="part-nav-bar">
+        <button class="part-nav-btn active-part" id="nav-p1" onclick="switchMainPart(1)">PART 1: George I & Cabinet</button>
+        <button class="part-nav-btn" id="nav-p2" onclick="switchMainPart(2)">PART 2: Coffee Houses, Culture & Methodism</button>
       </div>
 
-      <!-- CONTENITORE CINEMATOGRAFICO A SCHERMATA PIENA -->
-      <div class="cinematic-stage">
-        
-        <!-- SCENA 1: CARTINA (3/4) + GEORGE I (1/4) -->
-        <div class="scene-panel" id="scene-map">
-          <div class="scene1-grid">
-            
-            <!-- CARTINA A SINISTRA (3/4) -->
-            <div class="map-wrapper-large">
+      <!-- CONTENITORE PARTE 1 -->
+      <div id="main-part-1-container">
+        <div class="cinematic-stage">
+          
+          <div class="scene-panel" id="scene-map">
+            <div class="scene1-grid">
+              <div class="map-wrapper-large">
+                <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
+                <svg class="map-connection-overlay" viewBox="0 0 1000 600">
+                  <line x1="280" y1="205" x2="480" y2="245" stroke="#d4af37" stroke-width="6" stroke-dasharray="8" />
+                  <circle cx="280" cy="205" r="10" fill="#38bdf8" />
+                  <text x="230" y="185" fill="#38bdf8" font-size="20" font-weight="bold">London</text>
+                  <circle cx="480" cy="245" r="10" fill="#f87171" />
+                  <text x="495" y="245" fill="#f87171" font-size="20" font-weight="bold">Hanover</text>
+                </svg>
+              </div>
+
+              <div class="king-side-panel">
+                <div class="speech-bubble-side">
+                  "I speak little English and spend most of my reign in Hanover!" 🇬🇧❌
+                </div>
+                <img src="image_71affe.jpg" alt="George I" class="portrait-img-large">
+                <h3 class="character-name-tag-large">George I (1714–1727)</h3>
+                <button class="next-action-btn-large" onclick="goToScene(2)">Delegate Power ➔</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene-panel" id="scene-door" style="display: none;">
+            <div class="door-wrapper-large" onclick="goToScene(3)">
+              <img src="image_7205f8.png" alt="10 Downing Street Door" class="fullscreen-bg-img">
+              <div class="door-overlay-text">🚪 10 Downing Street</div>
+            </div>
+            <button class="next-action-btn-large" onclick="goToScene(3)">Open the Door ➔</button>
+          </div>
+
+          <div class="scene-panel" id="scene-cabinet" style="display: none;">
+            <div class="cabinet-room-bg">
+              <h3 class="room-heading-large">🏛️ The Cabinet: Whigs vs Tories Political Scene</h3>
+              <div class="political-arena-large">
+                
+                <div class="politician-card-large" id="card-walpole">
+                  <div class="party-tag-large whig-tag">WHIGS LEADER</div>
+                  <br>
+                  <img src="image_7209de.jpg" alt="Sir Robert Walpole" class="politician-img-large">
+                  <h4>Sir Robert Walpole</h4>
+                  <span class="role-subtitle-large">The First Prime Minister (1721–42)</span>
+                  <div class="hover-info-box-large">
+                    <p><strong>Sir Robert Walpole:</strong> Ambitious Whig leader, regarded as the first Prime Minister. His anti-war government was the longest in British history. Promoted trade, reduced land taxes, and received Downing Street!</p>
+                  </div>
+                </div>
+
+                <div class="vs-badge-large">VS</div>
+
+                <div class="politician-card-large" id="card-bolingbroke">
+                  <div class="party-tag-large tory-tag">TORIES OPPOSITION</div>
+                  <br>
+                  <img src="image_7209fb.jpg" alt="Henry St John" class="politician-img-large">
+                  <h4>Henry St John (Lord Bolingbroke)</h4>
+                  <span class="role-subtitle-large">Tory Leader</span>
+                  <div class="hover-info-box-large">
+                    <p><strong>Henry St John:</strong> Leader of the Tory opposition. Implicated in the 1715 Jacobite rebellion, leading to long-term political exile and Whig supremacy.</p>
+                  </div>
+                </div>
+
+              </div>
+              <button class="next-action-btn-large" onclick="switchMainPart(2)">Go to Part 2: Culture & Society ➔</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTENITORE PARTE 2 -->
+      <div id="main-part-2-container" style="display: none;">
+        <div class="cinematic-stage">
+          
+          <!-- PARTE 2 - STEP 1: COFFEE HOUSE & NEWSPAPERS -->
+          <div class="scene-panel" id="p2-step-coffee">
+            <div class="coffee-display-box">
+              <img id="coffee-img-element" src="WhatsApp Image 2026-10-21 at 16.10.07.jpeg" alt="Coffee House" class="fullscreen-bg-img">
+              <div class="overlay-text-banner" id="coffee-banner" style="display: none;">
+                <h3>☕ 18th-Century London Coffee Houses</h3>
+                <p>HUBS FOR POLITICAL AND SOCIAL DEBATE.<br>CIRCULATION OF THE LATEST PERIODICALS AND PAMPHLETS.</p>
+              </div>
+            </div>
+            <button class="next-action-btn-large" id="btn-coffee-step" onclick="advanceCoffeeStep()">Read the Newspaper ➔</button>
+          </div>
+
+          <!-- PARTE 2 - STEP 2: GRAND TOUR & ARCHITECTURE -->
+          <div class="scene-panel" id="p2-step-grandtour" style="display: none;">
+            <div class="map-wrapper-large" style="width: 100%; max-width: 1000px;">
               <img src="image_71af7f.jpg" alt="Europe Map" class="fullscreen-bg-img">
               <svg class="map-connection-overlay" viewBox="0 0 1000 600">
-                <line x1="280" y1="205" x2="480" y2="245" stroke="#d4af37" stroke-width="6" stroke-dasharray="8" />
+                <line x1="280" y1="205" x2="480" y2="440" stroke="#d4af37" stroke-width="6" stroke-dasharray="8" />
                 <circle cx="280" cy="205" r="10" fill="#38bdf8" />
-                <text x="230" y="185" fill="#38bdf8" font-size="20" font-weight="bold">London</text>
-                <circle cx="480" cy="245" r="10" fill="#f87171" />
-                <text x="495" y="245" fill="#f87171" font-size="20" font-weight="bold">Hanover</text>
+                <text x="220" y="190" fill="#38bdf8" font-size="20" font-weight="bold">Britain</text>
+                <circle cx="480" cy="440" r="10" fill="#f87171" />
+                <text x="500" y="450" fill="#f87171" font-size="20" font-weight="bold">Italy</text>
               </svg>
-            </div>
-
-            <!-- GEORGE I A DESTRA (1/4) -->
-            <div class="king-side-panel">
-              <div class="speech-bubble-side">
-                "I speak little English and spend most of my reign in Hanover!" 🇬🇧❌
+              <div class="overlay-text-banner">
+                <h3>🏛️ The Grand Tour & Cultural Exchange</h3>
+                <p>YOUNG ARISTOCRATS TRAVELING EUROPE TO BUY ART.<br>ITALIAN PALLADIAN STYLE DOMINATING BRITISH LANDMARKS.</p>
               </div>
-              <img src="image_71affe.jpg" alt="George I" class="portrait-img-large">
-              <h3 class="character-name-tag-large">George I (1714–1727)</h3>
-              <button class="next-action-btn-large" onclick="goToScene(2)">Delegate Power ➔</button>
             </div>
-
+            <button class="next-action-btn-large" onclick="goToP2Step(3)">Next: Methodism Movement ➔</button>
           </div>
-        </div>
 
-        <!-- SCENA 2: LA FOTO DELLA PORTA REALE CON TASTO "OPEN THE DOOR" -->
-        <div class="scene-panel" id="scene-door" style="display: none;">
-          <div class="door-wrapper-large" onclick="goToScene(3)">
-            <img src="image_7205f8.png" alt="10 Downing Street Door" class="fullscreen-bg-img">
-            <div class="door-overlay-text">🚪 10 Downing Street</div>
-          </div>
-          <button class="next-action-btn-large" onclick="goToScene(3)">Open the Door ➔</button>
-        </div>
-
-        <!-- SCENA 3: STANZA CABINET WALPOLE VS HENRY SAINT JOHN -->
-        <div class="scene-panel" id="scene-cabinet" style="display: none;">
-          <div class="cabinet-room-bg">
-            <h3 class="room-heading-large">🏛️ The Cabinet: Whigs vs Tories Political Scene</h3>
-            
-            <div class="political-arena-large">
-              
-              <!-- ROBERT WALPOLE (SINISTRA) -->
-              <div class="politician-card-large" id="card-walpole">
-                <div class="party-tag-large whig-tag">WHIGS LEADER</div>
-                <br>
-                <img src="image_7209de.jpg" alt="Sir Robert Walpole" class="politician-img-large">
-                <h4>Sir Robert Walpole</h4>
-                <span class="role-subtitle-large">The First Prime Minister (1721–42)</span>
-                
-                <div class="hover-info-box-large">
-                  <p><strong>Sir Robert Walpole:</strong> Ambitious Whig leader, regarded as the first Prime Minister. His anti-war government was the longest in British history. Promoted trade, reduced land taxes, and received Downing Street!</p>
-                </div>
+          <!-- PARTE 2 - STEP 3: METHODISM -->
+          <div class="scene-panel" id="p2-step-methodism" style="display: none;">
+            <div class="wesley-container">
+              <img src="georgeandcharlses.jpg" alt="John and Charles Wesley" class="wesley-img-large">
+              <div class="methodism-card">
+                <h3>METHODISM (1729)</h3>
+                <h4>FOUNDED BY JOHN AND CHARLES WESLEY</h4>
+                <ul>
+                  <li><strong> VALUES:</strong> Respectability, moral dignity, temperance and method.</li>
+                  <li><strong> SOCIAL ACTION:</strong> Sunday schools to help the poor learn to read and write.</li>
+                </ul>
               </div>
-
-              <!-- GRANDE VS AL CENTRO -->
-              <div class="vs-badge-large">VS</div>
-
-              <!-- HENRY ST JOHN / BOLINGBROKE (DESTRA) -->
-              <div class="politician-card-large" id="card-bolingbroke">
-                <div class="party-tag-large tory-tag">TORIES OPPOSITION</div>
-                <br>
-                <img src="image_7209fb.jpg" alt="Henry St John" class="politician-img-large">
-                <h4>Henry St John (Lord Bolingbroke)</h4>
-                <span class="role-subtitle-large">Tory Leader</span>
-                
-                <div class="hover-info-box-large">
-                  <p><strong>Henry St John:</strong> Leader of the opposition. Implicated in the 1715 Jacobite rebellion, leading to long-term political exile and Whig supremacy.</p>
-                </div>
-              </div>
-
             </div>
-
-            <button class="next-action-btn-large" onclick="resetPart1()">🔄 Restart Part 1</button>
+            <button class="next-action-btn-large" onclick="switchMainPart(1)">🔄 Restart from Part 1</button>
           </div>
-        </div>
 
+        </div>
       </div>
+
     </div>
 
-    <!-- SCHERMATA STUDIO (In costruzione) -->
+    <!-- SCHERMATA STUDIO -->
     <div id="study-screen" class="view-screen">
       <button class="back-btn" onclick="goHome()">← Back to Mode Selection (ESC)</button>
       <h2>📚 Interactive Study & Revision</h2>
@@ -660,7 +812,7 @@
       document.getElementById('home-screen').style.display = 'none';
       if (mode === 'presentation') {
         document.getElementById('presentation-screen').classList.add('active');
-        goToScene(1);
+        switchMainPart(1);
       } else if (mode === 'study') {
         document.getElementById('study-screen').classList.add('active');
       }
@@ -680,7 +832,25 @@
       }
     }
 
-    // Navigazione scene cinematografiche
+    /* CAMBIO PARTI PRINCIPALI */
+    function switchMainPart(partNumber) {
+      document.getElementById('main-part-1-container').style.display = 'none';
+      document.getElementById('main-part-2-container').style.display = 'none';
+      document.getElementById('nav-p1').classList.remove('active-part');
+      document.getElementById('nav-p2').classList.remove('active-part');
+
+      if (partNumber === 1) {
+        document.getElementById('main-part-1-container').style.display = 'block';
+        document.getElementById('nav-p1').classList.add('active-part');
+        goToScene(1);
+      } else if (partNumber === 2) {
+        document.getElementById('main-part-2-container').style.display = 'block';
+        document.getElementById('nav-p2').classList.add('active-part');
+        goToP2Step(1);
+      }
+    }
+
+    /* SCENE PARTE 1 */
     function goToScene(sceneNumber) {
       document.getElementById('scene-map').style.display = 'none';
       document.getElementById('scene-door').style.display = 'none';
@@ -691,8 +861,49 @@
       if (sceneNumber === 3) document.getElementById('scene-cabinet').style.display = 'flex';
     }
 
-    function resetPart1() {
-      goToScene(1);
+    /* SCENE PARTE 2 CON RESET CORRETTO */
+    let currentCoffeeStep = 1;
+
+    function goToP2Step(stepNumber) {
+      document.getElementById('p2-step-coffee').style.display = 'none';
+      document.getElementById('p2-step-grandtour').style.display = 'none';
+      document.getElementById('p2-step-methodism').style.display = 'none';
+
+      if (stepNumber === 1) {
+        document.getElementById('p2-step-coffee').style.display = 'flex';
+        // Reset completo dello stato del giornale
+        currentCoffeeStep = 1;
+        document.getElementById('coffee-img-element').src = 'WhatsApp Image 2026-10-21 at 16.10.07.jpeg';
+        document.getElementById('coffee-banner').style.display = 'none';
+        
+        const btn = document.getElementById('btn-coffee-step');
+        btn.innerText = 'Read the Newspaper ➔';
+      } else if (stepNumber === 2) {
+        document.getElementById('p2-step-grandtour').style.display = 'flex';
+      } else if (stepNumber === 3) {
+        document.getElementById('p2-step-methodism').style.display = 'flex';
+      }
+    }
+
+    function advanceCoffeeStep() {
+      const coffeeImg = document.getElementById('coffee-img-element');
+      const coffeeBanner = document.getElementById('coffee-banner');
+      const btn = document.getElementById('btn-coffee-step');
+
+      if (currentCoffeeStep === 1) {
+        coffeeImg.src = 'WhatsApp Image 2026-10-21 at 16.10.071.jpeg';
+        currentCoffeeStep = 2;
+      } else if (currentCoffeeStep === 2) {
+        coffeeImg.src = 'WhatsApp Image 2026-10-21 at 16.10.23.jpeg';
+        currentCoffeeStep = 3;
+      } else if (currentCoffeeStep === 3) {
+        coffeeImg.src = 'WhatsApp Image 2026-10-21 at 16.10.07.jpeg';
+        coffeeBanner.style.display = 'block';
+        btn.innerText = 'Next: The Grand Tour & Architecture ➔';
+        currentCoffeeStep = 4;
+      } else if (currentCoffeeStep === 4) {
+        goToP2Step(2);
+      }
     }
 
     // Tasti diretti (A, B, ESC)
